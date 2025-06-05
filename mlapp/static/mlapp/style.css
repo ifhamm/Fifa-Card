@@ -1,0 +1,71 @@
+.fifa-card {
+  width: 300px;
+  height: 480px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  font-family: "Arial Black", sans-serif;
+  color: #fff;
+  text-shadow: 1px 1px 2px #000;
+  margin: 30px auto;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.fifa-overall {
+  position: absolute;
+  top: 70px;
+  left: 35px;
+  font-size: 26px;
+  font-weight: bold;
+  line-height: 1;
+  z-index: 10;
+}
+
+.fifa-position {
+  position: absolute;
+  top: 95px;
+  left: 35px;
+  font-size: 14px;
+  font-weight: bold;
+  z-index: 10;
+}
+
+.fifa-photo {
+  position: absolute;
+  top: 80px;
+  left: 40px;
+  width: 220px;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid #fff;
+}
+
+.fifa-name {
+  position: absolute;
+  top: 275px;
+  width: 100%;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.fifa-stats {
+  position: absolute;
+  bottom: 87px;
+  width: 100%;
+  padding: 0 35px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  line-height: 1.7;
+  font-weight: bold;
+}
+
+.fifa-stats .left,
+.fifa-stats .right {
+  display: flex;
+  flex-direction: column;
+  margin-right: 45px; /* atur sesuai kebutuhan */
+}

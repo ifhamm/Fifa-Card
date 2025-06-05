@@ -1,0 +1,134 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>FIFA Player Predictor</title>
+    <link rel="stylesheet" href="{% static 'mlapp/style.css' %}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f7f9fc;
+            color: #333;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h2 {
+            margin-bottom: 10px;
+            font-size: 28px;
+            color: #2c3e50;
+        }
+
+        form {
+            background: white;
+            padding: 20px 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+            max-width: 500px;
+            width: 100%;
+            margin-bottom: 30px;
+        }
+
+        form p {
+            margin-bottom: 12px;
+        }
+
+        label {
+            font-weight: 600;
+        }
+
+        input[type="number"],
+        select,
+        input[type="file"] {
+            width: 100%;
+            padding: 8px 10px;
+            margin-top: 4px;
+            margin-bottom: 12px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            background: #1abc9c;
+            color: white;
+            padding: 10px 18px;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        button:hover {
+            background: #16a085;
+        }
+
+        .result-box {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .result-box p {
+            margin: 4px 0;
+            font-size: 16px;
+        }
+
+        canvas {
+            margin-top: 20px;
+            max-width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>⚽ FIFA Player Predictor</h2>
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">🎯 Prediksi</button>
+    </form>
+
+    {% if result %}
+    <div class="result-box">
+        <h3>Hasil Prediksi</h3>
+        <p><strong>Kaki Dominan:</strong> {{ result }}</p>
+        <p><strong>Posisi Ideal:</strong> {{ position }}</p>
+    </div>
+    {% endif %}
+
+    {% if rating %}
+    <div class="fifa-card"
+        style="background-image: url('{% static 'mlapp/fifa_' %}{{ template_code|default:'gold' }}.png');">
+        <div class="fifa-overall">{{ rating.overall }}</div>
+        <div class="fifa-position">{{ position|slice:":2" }}</div>
+
+        {% if photo_url %}
+        <img src="{{ photo_url }}" class="fifa-photo">
+        {% endif %}
+
+        <div class="fifa-name">Bill</div>
+        <div class="fifa-stats">
+            <div class="left">
+                <div>{{ rating.speed }} PAC</div>
+                <div>{{ rating.attack }} SHO</div>
+                <div>{{ rating.passing }} PAS</div>
+            </div>
+            <div class="right">
+                <div>{{ rating.defense }} DEF</div>
+                <div>{{ rating.physical }} PHY</div>
+                <div>{{ result|upper }}  </div>
+            </div>
+        </div>
+    </div>
+
+    {% endif %}
+</body>
+
+</html>
