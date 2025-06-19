@@ -8,6 +8,7 @@ TEMPLATE_CHOICES = [
 ]
 
 class PlayerForm(forms.Form):
+    name = forms.CharField(max_length=30, label="Nama Pemain")
     physical = forms.IntegerField(min_value=0, max_value=100, label="Physical")
     speed_agility = forms.IntegerField(min_value=0, max_value=100, label="Speed & Agility")
     attack = forms.IntegerField(min_value=0, max_value=100, label="Attack")
